@@ -12,7 +12,6 @@ RUN ls -la /usr/local/lib/node_modules
 
 # Définir NODE_PATH
 ENV NODE_PATH=/usr/local/lib/node_modules
-RUN node -e "console.log(require('pdf-parse'))" || echo "Module not found"
 
 # Revenir à l'utilisateur node
 USER node
