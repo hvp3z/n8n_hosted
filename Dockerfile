@@ -1,20 +1,11 @@
 FROM n8nio/n8n:1.99.1
 
-# Utiliser root temporairement
 USER root
-
-# Définir un répertoire de travail
 WORKDIR /home/node/.n8n_custom
 COPY package.json ./
 RUN rm -rf node_modules package-lock.json && npm install
-RUN cp -r /home/node/.n8n_custom/node_modules/* /usr/local/lib/node_modules/
-RUN ls -la /usr/local/lib/node_modules
-
-# Définir NODE_PATH
-ENV NODE_PATH=/usr/local/lib/node_modules
-RUN node -e "console.log(require('pdf-parse'))" || echo "Module not found"
-
-# Revenir à l'utilisateur node
+RUN mkdir -p /home/node/custom-modules && cp -r /home/node/.n8n_custom/node_modules/* /home/node/custom-modules/
+ENV NODE_PATH=/home/node/custom-modules
 USER node
 
 EXPOSE 5678
