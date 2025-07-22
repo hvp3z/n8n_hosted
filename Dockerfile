@@ -1,7 +1,10 @@
 FROM n8nio/n8n:1.99.1
 
-WORKDIR /usr/src/app
-COPY package.json ./
-RUN npm install
+# Installer les dépendances globalement pour qu'elles soient accessibles par n8n
+RUN npm install -g pdf-parse pdf2pic pizzip docxtemplater
+
+# Exposer le port
 EXPOSE 5678
-CMD ["/usr/local/bin/n8n"]
+
+# Utiliser la commande par défaut de l'image de base
+CMD ["n8n"]
