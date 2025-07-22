@@ -1,9 +1,6 @@
 FROM n8nio/n8n:1.99.1
 
-WORKDIR /home/node/.n8n_custom
-COPY package.json ./
-RUN rm -rf node_modules package-lock.json && npm install && npm list
-RUN cp -r /home/node/.n8n_custom/node_modules /usr/local/lib/node_modules/n8n/dist/node_modules
-
+RUN npm install -g pdf-parse pdf2pic pizzip docxtemplater
+RUN npm list -g
 EXPOSE 5678
 CMD ["n8n"]
