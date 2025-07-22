@@ -1,9 +1,14 @@
 FROM n8nio/n8n
 
-WORKDIR /app
-COPY . /app
-RUN npm install pdf-parse pdf2pic pizzip docxtemplater
+# Set working directory
+WORKDIR /usr/src/app
 
+# Copy package.json and install dependencies
+COPY package.json ./
+RUN npm install
+
+# Expose the default n8n port
 EXPOSE 5678
 
-CMD ["node", "/app/src/index.js"]
+# Start n8n
+CMD ["n8n"]
