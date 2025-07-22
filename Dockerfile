@@ -1,14 +1,14 @@
 FROM n8nio/n8n
 
-# Définir le répertoire de travail (optionnel, mais recommandé)
+# Set working directory
 WORKDIR /usr/src/app
 
-# Copier package.json et installer les dépendances supplémentaires
+# Copy package.json and install dependencies
 COPY package.json ./
-RUN npm install pdf-parse pdf2pic pizzip docxtemplater
+RUN npm install
 
-# Exposer le port par défaut de n8n
+# Expose the default n8n port
 EXPOSE 5678
 
-# Utiliser la commande par défaut de n8n
+# Start n8n
 CMD ["n8n"]
