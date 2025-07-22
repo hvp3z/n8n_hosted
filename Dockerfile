@@ -1,5 +1,9 @@
-FROM node:20-alpine
+FROM n8nio/n8n
+
 WORKDIR /app
-COPY . .
-RUN yarn install --production
-CMD ["node", "src/index.js"]
+COPY . /app
+RUN npm install pdf-parse pdf2pic pizzip docxtemplater
+
+EXPOSE 5678
+
+CMD ["node", "/app/src/index.js"]
