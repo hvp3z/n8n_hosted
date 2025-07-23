@@ -11,6 +11,7 @@ RUN cp -r /home/node/.n8n_custom/node_modules/* /usr/local/lib/node_modules/
 RUN ls -la /usr/local/lib/node_modules
 
 # Définir NODE_PATH
+#test
 ENV NODE_PATH=/usr/local/lib/node_modules
 
 # Revenir à l'utilisateur node
