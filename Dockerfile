@@ -11,7 +11,7 @@ WORKDIR /home/node/.n8n
 COPY package.json ./
 RUN rm -rf node_modules package-lock.json
 RUN npm install -g pdf-parse pdf2pic pizzip docxtemplater
-RUN cp -r /home/node/.n8n/node_modules/* /usr/local/lib/node_modules/
+RUN cp -r /home/node/.n8n/* /usr/local/lib/node_modules/
 RUN ls -la /usr/local/lib/node_modules
 
 # Définir NODE_PATH
