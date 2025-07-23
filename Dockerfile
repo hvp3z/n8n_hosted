@@ -1,13 +1,17 @@
-FROM n8nio/n8n:1.99.1
+FROM n8nio/n8n:1.103.2
 
 # Utiliser root temporairement
 USER root
 
+# Installer les dépendances système si nécessaire
+RUN apk add --no-cache python3 make g++
+
 # Définir un répertoire de travail
-WORKDIR /home/node/.n8n_custom
+WORKDIR /home/node/.n8n
 COPY package.json ./
-RUN rm -rf node_modules package-lock.json && npm install
-RUN cp -r /home/node/.n8n_custom/node_modules/* /usr/local/lib/node_modules/
+RUN rm -rf node_modules package-lock.json
+RUN npm install -g pdf-parse pdf2pic pizzip docxtemplater
+RUN cp -r /home/node/.n8n/node_modules/* /usr/local/lib/node_modules/
 RUN ls -la /usr/local/lib/node_modules
 
 # Définir NODE_PATH
@@ -17,5 +21,3 @@ ENV NODE_PATH=/usr/local/lib/node_modules
 # Revenir à l'utilisateur node
 USER node
 
-EXPOSE 5678
-CMD ["n8n"]
