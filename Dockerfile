@@ -1,5 +1,8 @@
 FROM n8nio/n8n:1.103.2
 
+USER node
+RUN npm install -g pdf-parse pdf2pic pizzip docxtemplater
+
 # Utiliser root temporairement
 USER root
 
